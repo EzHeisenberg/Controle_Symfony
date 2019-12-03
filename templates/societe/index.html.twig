@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SocieteController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>liste des catégorie</h1>
+
+    <table class="table table-dark table-bordered text-center">
+        <thead>
+        <tr>
+            <th>Societe</th>
+            <th>Nom, Prénom</th>
+            <th>Mail</th>
+            <th>IBAN</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for clients in client %}
+            <tr>
+                <th>{{ clients.Societe }}</th>
+                <th>{{ clients.Nom }}, {{ clients.Prenom }}</th>
+                <th>{{ clients.Email }}</th>
+                <th>{{ clients.IBAN }}</th>
+                <th>
+                    <a href="{{ path('modifier_client', {"id":clients.id}) }}" class="btn btn-primary">Modifier</a>
+                </th>
+                <th>
+                    <a class="btn btn-danger" href="{{ path('supprimer_client', {"id":clients.id}) }}">supprimer</a>
+                </th>
+            </tr>
+
+
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <a href="{{ path('ajouter_client') }}" class="btn btn-dark">ajouter client</a>
+
+</div>
+
+
+
+{% endblock %}
